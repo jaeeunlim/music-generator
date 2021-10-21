@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Music Sheet";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Generate your music sheet. Click Add to add a line.</p>
+
+<div id="sheet-group">
+    <img class="sheet" id="sheet1" src="~/images/blank_sheet.png" alt="Blank Sheet">
+</div>
+
+<button type="button" class="btn btn-primary" id="btn-add" />Add<i class="glyphicon glyphicon-plus-sign" style="font-size:20px"></i></button>
+<button type="button" class="btn btn-danger" id="btn-remove" hidden />Remove<i class="glyphicon glyphicon-minus-sign" style="font-size:20px"></i></button>
+
+<script src="~/js/sheet.js"></script>
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/sheet.css")" media="screen" />
