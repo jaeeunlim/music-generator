@@ -7,14 +7,25 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<p>Generate your music sheet. Click Add to add a line.</p>
+<p>Generate your music sheet. Click Add to add a line. ♩♩</p>
+
+<input type="button" value="PLAY" onclick="play()">
+<input type="button" value="STOP" onclick="stop()">
+<audio id="snare" src="@Url.Content("~/audio/snare.mov")"></audio>
+<audio id="hi-hat" src="@Url.Content("~/audio/hi-hat.mov")"></audio>
+
+<input type="button" value="Snare Drum" onclick="add_snare()">
+<input type="button" value="Hi-Hat Cymbal" onclick="add_hi_hat()">
 
 <div id="sheet-group">
-    <img class="sheet" id="sheet1" src="~/images/blank_sheet.png" alt="Blank Sheet">
+    <div class="stave" id="sheet1" style="position:relative">
+        <img class="sheet" src="~/images/blank_sheet.png" alt="Blank Sheet">
+        <img id="highlight" src="~/images/highlight.png" alt="Highlight">
+    </div>
 </div>
 
 <button type="button" class="btn btn-primary" id="btn-add" />Add<i class="glyphicon glyphicon-plus-sign" style="font-size:20px"></i></button>
 <button type="button" class="btn btn-danger" id="btn-remove" hidden />Remove<i class="glyphicon glyphicon-minus-sign" style="font-size:20px"></i></button>
 
-<script src="~/js/sheet.js"></script>
-<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/sheet.css")" media="screen" />
+<script src="~/js/sheet.js" asp-append-version="true"></script>
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/sheet.css")" media="screen" asp-append-version="true" />
