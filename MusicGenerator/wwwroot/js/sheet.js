@@ -30,10 +30,6 @@ document.getElementById("btn-remove").onclick = function () {
 // Play the notes when PLAY button is clicked.
 function snare() {
     document.getElementById("snare").play();
-
-    let highlight = document.getElementById("highlight");
-    var left_pixel = parseInt(highlight.style.left, 10);
-    highlight.style.left = (left_pixel + 50) + "px";
 }
 
 function hi_hat() {
@@ -47,19 +43,34 @@ function play() {
     bpm = 100.0;
     sec = 60.0 / bpm;
     interval_hi_hat = setInterval("hi_hat()", sec * 1000);
+    interval_highlight = setInterval("move_highlight()", sec * 1000);
+
+    // Show highlight to visualize which note is being played.
+    document.getElementById("highlight").hidden = false;
+}
+
+function move_highlight() {
+    let highlight = document.getElementById("highlight");
+    if (highlight.style.left === "") {
+        highlight.style.left = "100px";
+    } else {
+        let left_pixel = parseInt(highlight.style.left, 10);
+        highlight.style.left = (left_pixel + 72) + "px";
+    }
 }
 
 // Stop the music when STOP button is clicked.
 function stop() {
     clearInterval(interval_snare);
     clearInterval(interval_hi_hat);
+    clearInterval(interval_highlight);
 }
 
 // Add snare drum note when Snare Drum button is clicked.
 function add_snare() {
     let stave = document.getElementById(`sheet${num_sheets}`);
     let div = document.createElement("div");
-    let note = "♩\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
+    let note = "♩\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
     let text = document.createTextNode(note.repeat(3));
     div.appendChild(text);
     div.className = "snare";
@@ -81,4 +92,15 @@ function add_hi_hat() {
     div2.className = "hi-hat-head";
     stave.appendChild(div1);
     stave.appendChild(div2);
+}
+
+// Add bass note when Bass button is clicked.
+function add_bass() {
+    let stave = document.getElementById(`sheet${num_sheets}`);
+    let div = document.createElement("div");
+    let note = "♩\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
+    let text = document.createTextNode(note.repeat(3));
+    div.appendChild(text);
+    div.className = "bass";
+    stave.appendChild(div);
 }

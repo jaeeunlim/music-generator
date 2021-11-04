@@ -13,14 +13,16 @@
 <input type="button" value="STOP" onclick="stop()">
 <audio id="snare" src="@Url.Content("~/audio/snare.mov")"></audio>
 <audio id="hi-hat" src="@Url.Content("~/audio/hi-hat.mov")"></audio>
+<audio id="hi-hat" src="@Url.Content("~/audio/bass.mov")"></audio>
 
 <input type="button" value="Snare Drum" onclick="add_snare()">
 <input type="button" value="Hi-Hat Cymbal" onclick="add_hi_hat()">
+<input type="button" value="Bass" onclick="add_bass()">
 
 <div id="sheet-group">
     <div class="stave" id="sheet1" style="position:relative">
         <img class="sheet" src="~/images/blank_sheet.png" alt="Blank Sheet">
-        <img id="highlight" src="~/images/highlight.png" alt="Highlight">
+        <img id="highlight" src="~/images/highlight.png" alt="Highlight" hidden>
     </div>
 </div>
 
