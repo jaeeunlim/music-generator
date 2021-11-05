@@ -12,4 +12,8 @@
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\audio\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="font-awesome" />
+    <None Remove="FontAwesome" />
+  </ItemGroup>
 </Project>

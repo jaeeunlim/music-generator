@@ -5,47 +5,46 @@
 
 .stave {
     position: relative;
-    margin: 30px;
+    margin: 20px 0;
+    width: 1200px;
+    height: 150px;
+    background-image: url("../images/blank_sheet.png");
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
-.snare {
-    position: absolute;
-    font-size: 55px;
-    top: 5px;
-    left: 334px;
-/*    transform: scale(-1, -1);
-    -moz-transform: scale(-1, -1);
-    -webkit-transform: scale(-1, -1);
-    -o-transform: scale(-1, -1);
-    -ms-transform: scale(-1, -1);
-    transform: scale(-1, -1);*/
+.note-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
+    margin-left: 100px;
+    margin-top: 10px;
+    width: 88%;
+    height: 87%;
 }
 
-.bass {
+span.note {
     position: absolute;
-    font-size: 60px;
-    top: 65px;
-    left: -155px;
-    transform: scale(-1, -1);
-    -moz-transform: scale(-1, -1);
-    -webkit-transform: scale(-1, -1);
-    -o-transform: scale(-1, -1);
-    -ms-transform: scale(-1, -1);
-    transform: scale(-1, -1);
+    top: -65px;
+    left: 30px;
+    font-size: 70px;
 }
 
-.hi-hat {
-    position: absolute;
-    font-size: 52px;
-    top: -32px;
-    left: 130px;
+button.note {
+    position: relative;
+    background: none;
+    border: none;
 }
 
-.hi-hat-head {
-    position: absolute;
-    font-size: 25px;
-    top: 10px;
-    left: 120px;
+button.note:hover {
+    background: blue;
+    opacity: 25%;
+    cursor: pointer;
+}
+
+button.note:focus {
+    outline: none;
 }
 
 #highlight {
@@ -57,3 +56,4 @@
     height: 170px;
     opacity: 0.2;
 }
+t

@@ -27,80 +27,9 @@ document.getElementById("btn-remove").onclick = function () {
     }
 }
 
-// Play the notes when PLAY button is clicked.
-function snare() {
-    document.getElementById("snare").play();
-}
-
-function hi_hat() {
-    document.getElementById("hi-hat").play();
-}
-
-function play() {
-    bpm = 25.0;
-    sec = 60.0 / bpm;
-    interval_snare = setInterval("snare()", sec * 1000);
-    bpm = 100.0;
-    sec = 60.0 / bpm;
-    interval_hi_hat = setInterval("hi_hat()", sec * 1000);
-    interval_highlight = setInterval("move_highlight()", sec * 1000);
-
-    // Show highlight to visualize which note is being played.
-    document.getElementById("highlight").hidden = false;
-}
-
-function move_highlight() {
-    let highlight = document.getElementById("highlight");
-    if (highlight.style.left === "") {
-        highlight.style.left = "100px";
-    } else {
-        let left_pixel = parseInt(highlight.style.left, 10);
-        highlight.style.left = (left_pixel + 72) + "px";
-    }
-}
-
-// Stop the music when STOP button is clicked.
-function stop() {
-    clearInterval(interval_snare);
-    clearInterval(interval_hi_hat);
-    clearInterval(interval_highlight);
-}
-
-// Add snare drum note when Snare Drum button is clicked.
-function add_snare() {
-    let stave = document.getElementById(`sheet${num_sheets}`);
-    let div = document.createElement("div");
-    let note = "♩\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
-    let text = document.createTextNode(note.repeat(3));
-    div.appendChild(text);
-    div.className = "snare";
-    stave.appendChild(div);
-}
-
-// Add hi-hat note when Hi-Hat Cymbal button is clicked.
-function add_hi_hat() {
-    let stave = document.getElementById(`sheet${num_sheets}`);
-    let div1 = document.createElement("div");
-    let div2 = document.createElement("div");
-    let note = "𝄀\xa0\xa0\xa0\xa0\xa0\xa0";
-    let head = "x\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
-    let text1 = document.createTextNode(note.repeat(12));
-    let text2 = document.createTextNode(head.repeat(12));
-    div1.appendChild(text1);
-    div2.appendChild(text2);
-    div1.className = "hi-hat";
-    div2.className = "hi-hat-head";
-    stave.appendChild(div1);
-    stave.appendChild(div2);
-}
-
-// Add bass note when Bass button is clicked.
-function add_bass() {
-    let stave = document.getElementById(`sheet${num_sheets}`);
-    let div = document.createElement("div");
-    let note = "♩\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
-    let text = document.createTextNode(note.repeat(3));
-    div.appendChild(text);
-    div.className = "bass";
-    stave.appendChild(div);
+// Add a note to stave when a grid is clicked.
+function addNote(id) {
+    let grid = document.getElementById(id);
+    let note = grid.querySelector(".note");
+    note.hidden = !note.hidden;
 }
