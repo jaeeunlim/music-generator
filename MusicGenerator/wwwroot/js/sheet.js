@@ -30,9 +30,8 @@ document.getElementById("btn-remove").onclick = function () {
 // Add a note to stave when a grid is clicked.
 function addNote(id) {
     let grid = document.getElementById(id);
-    let note = grid.querySelector(".note");
-    if (!note) {
-        note = grid.querySelector(".note-flipped");
+    let children = grid.children;
+    for (var i = 0; i < children.length; i++) {
+        children[i].hidden = !children[i].hidden;
     }
-    note.hidden = !note.hidden;
 }

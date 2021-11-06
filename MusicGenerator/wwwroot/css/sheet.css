@@ -43,6 +43,14 @@ span.note-flipped {
     transform: scale(-1, -1);
 }
 
+span.note-line {
+    position: absolute;
+    top: -20px;
+    left: 24px;
+    font-size: 30px;
+    z-index: 10px;
+}
+
 button.note {
     position: relative;
     background: none;
