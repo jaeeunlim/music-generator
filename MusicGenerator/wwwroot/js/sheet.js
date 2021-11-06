@@ -31,5 +31,8 @@ document.getElementById("btn-remove").onclick = function () {
 function addNote(id) {
     let grid = document.getElementById(id);
     let note = grid.querySelector(".note");
+    if (!note) {
+        note = grid.querySelector(".note-flipped");
+    }
     note.hidden = !note.hidden;
 }

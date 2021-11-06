@@ -4,7 +4,6 @@
 }
 
 .stave {
-    position: relative;
     margin: 20px 0;
     width: 1200px;
     height: 150px;
@@ -19,7 +18,8 @@
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
     margin-left: 100px;
-    margin-top: 10px;
+    margin-top: 15px;
+    padding-top: 17px;
     width: 88%;
     height: 87%;
 }
@@ -29,6 +29,18 @@ span.note {
     top: -65px;
     left: 30px;
     font-size: 70px;
+}
+
+span.note-flipped {
+    position: absolute;
+    top: -28px;
+    left: 30px;
+    font-size: 70px;
+    -moz-transform: scale(-1, -1);
+    -webkit-transform: scale(-1, -1);
+    -o-transform: scale(-1, -1);
+    -ms-transform: scale(-1, -1);
+    transform: scale(-1, -1);
 }
 
 button.note {
