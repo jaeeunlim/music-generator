@@ -8,12 +8,4 @@
     <Content Remove="wwwroot\images\" />
     <Content Remove="wwwroot\audio\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\audio\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="font-awesome" />
-    <None Remove="FontAwesome" />
-  </ItemGroup>
 </Project>
