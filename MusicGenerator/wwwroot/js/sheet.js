@@ -1,5 +1,12 @@
-﻿const MIN_SHEETS = 1;
+﻿const MAX_ROWS = 13; // maximum number of rows on stave where a note can be placed
+const MIN_SHEETS = 1;
+const MUSIC_NOTE_AUDIO = [
+    "la-hi", "sol-hi", "fa-hi", "mi-hi", "re-hi", "do-hi", "ti-low",
+    "la-low", "sol-low", "fa-low", "mi-low", "re-low", "do-low"
+];
+
 var num_sheets = 1;
+var col = 0; // current column on the stave that is being played
 
 // Add more music sheet when Add button is clicked.
 document.getElementById("btn-add").onclick = function () {
@@ -52,14 +59,23 @@ function move_highlight() {
     let highlight = document.getElementById("highlight");
     if (highlight.style.left === "") {
         highlight.style.left = "100px";
+    } else if (highlight.style.left === "1068px") {
+        reset();
     } else {
         let left_pixel = parseInt(highlight.style.left, 10);
         highlight.style.left = (left_pixel + 88) + "px";
+        col++;
     }
 }
 
 function play_music() {
-    // TODO: play the notes
+    for (var row = 0; row < MAX_ROWS; row++) {
+        let note = document.getElementById(`r${row}-c${col}`);
+        if (!note.firstChild.hidden) {
+            console.log(MUSIC_NOTE_AUDIO[row]);
+            document.getElementById(MUSIC_NOTE_AUDIO[row]).play();
+        }
+    }
 }
 
 // Pause the music when PAUSE button is clicked.
@@ -70,9 +86,14 @@ document.getElementById("pause").onclick = function () {
 
 // Stop the music when STOP button is clicked. Remove highlight and go back to beginning.
 document.getElementById("stop").onclick = function () {
+    reset();
+}
+
+function reset() {
     clearInterval(interval_music);
     clearInterval(interval_highlight);
     let highlight = document.getElementById("highlight");
     highlight.style.left = "";
     highlight.hidden = true;
+    col = 0;
 }
