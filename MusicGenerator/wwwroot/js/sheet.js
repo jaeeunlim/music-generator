@@ -72,8 +72,9 @@ function play_music() {
     for (var row = 0; row < MAX_ROWS; row++) {
         let note = document.getElementById(`r${row}-c${col}`);
         if (!note.firstChild.hidden) {
-            console.log(MUSIC_NOTE_AUDIO[row]);
-            document.getElementById(MUSIC_NOTE_AUDIO[row]).play();
+            let audio = document.getElementById(MUSIC_NOTE_AUDIO[row]);
+            let audio_clone = audio.cloneNode;
+            audio_clone.play();
         }
     }
 }
