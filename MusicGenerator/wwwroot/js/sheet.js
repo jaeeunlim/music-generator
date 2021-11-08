@@ -1,4 +1,5 @@
 ﻿const MAX_ROWS = 13; // maximum number of rows on stave where a note can be placed
+const MAX_COLS = 12; // maximum number of columns on stave where a note can be placed
 const MIN_SHEETS = 1;
 const MUSIC_NOTE_AUDIO = [
     "la-hi", "sol-hi", "fa-hi", "mi-hi", "re-hi", "do-hi", "ti-low",
@@ -7,6 +8,9 @@ const MUSIC_NOTE_AUDIO = [
 
 var num_sheets = 1;
 var col = 0; // current column on the stave that is being played
+var stave_num = 0; // current stave being played
+var first_note = true;
+var last_note = false;
 
 // Add more music sheet when Add button is clicked.
 document.getElementById("btn-add").onclick = function () {
@@ -15,6 +19,16 @@ document.getElementById("btn-add").onclick = function () {
     var clone = section.cloneNode(true);
     num_sheets++;
     clone.id = `sheet${num_sheets}`;
+    let note_grid = clone.querySelector(".note-grid");
+    let children = note_grid.children;
+    for (var i = 0; i < children.length; i++) {
+        let note = children[i];
+        note.id = note.id.slice(0, -1) + `${num_sheets-1}`; // Increment note ids.
+        let note_children = note.children;
+        for (var j = 0; j < note_children.length; j++) {
+            note_children[j].hidden = true; // Clear all notes.
+        }
+    }
     container.appendChild(clone);
 
     if (num_sheets > MIN_SHEETS) {
@@ -46,43 +60,68 @@ function addNote(id) {
 
 // Highlight stave when PLAY button is clicked.
 document.getElementById("play").onclick = function () {
-    bpm = 60.0;
+    music_ended = false;
+    play();
+}
+
+function play() {
+    bpm = 120.0;
     sec = 60.0 / bpm;
     interval_music = setInterval("play_music()", sec * 1000);
     interval_highlight = setInterval("move_highlight()", sec * 1000);
-
-    // Show highlight to visualize which note is being played.
-    document.getElementById("highlight").hidden = false;
 }
 
 function move_highlight() {
-    let highlight = document.getElementById("highlight");
-    if (highlight.style.left === "") {
-        highlight.style.left = "100px";
-    } else if (highlight.style.left === "1068px") {
+    let stave = document.getElementById(`sheet${stave_num + 1}`);
+    let highlight = stave.querySelector("#highlight");
+
+    if (music_ended) {
         reset();
     } else {
-        let left_pixel = parseInt(highlight.style.left, 10);
-        highlight.style.left = (left_pixel + 88) + "px";
-        col++;
+        ++col;
+        if (first_note) {
+            if (stave_num > 0) {
+                document.getElementById(`sheet${stave_num}`).querySelector("#highlight").hidden = true;
+            }
+            highlight.hidden = false;
+            highlight.style.left = "100px";
+            first_note = false;
+        } else {
+            let left_pixel = parseInt(highlight.style.left, 10);
+            highlight.style.left = (left_pixel + 88) + "px";
+
+            if (col === MAX_COLS) {
+                if (stave_num + 1 === num_sheets) {
+                    music_ended = true;
+                } else {
+                    first_note = true;
+                    stave_num++;
+                    col = 0;
+                }
+            }
+        }
     }
 }
 
 function play_music() {
-    for (var row = 0; row < MAX_ROWS; row++) {
-        let note = document.getElementById(`r${row}-c${col}`);
-        if (!note.firstChild.hidden) {
-            let audio = document.getElementById(MUSIC_NOTE_AUDIO[row]);
-            let audio_clone = audio.cloneNode;
-            audio_clone.play();
+    if (!music_ended) {
+        let stave = document.getElementById(`sheet${stave_num + 1}`);
+        let note_grid = stave.querySelector(".note-grid");
+        for (var row = 0; row < MAX_ROWS; row++) {
+            console.log(`#r${row}-c${col}-${stave_num}`);
+            let note = note_grid.querySelector(`#r${row}-c${col}-${stave_num}`);
+            if (!note.firstChild.hidden) {
+                let audio = document.getElementById(MUSIC_NOTE_AUDIO[row]);
+                let audio_clone = audio.cloneNode();
+                audio_clone.play();
+            }
         }
     }
 }
 
 // Pause the music when PAUSE button is clicked.
 document.getElementById("pause").onclick = function () {
-    clearInterval(interval_music);
-    clearInterval(interval_highlight);
+    clear_interval();
 }
 
 // Stop the music when STOP button is clicked. Remove highlight and go back to beginning.
@@ -91,10 +130,21 @@ document.getElementById("stop").onclick = function () {
 }
 
 function reset() {
+    clear_interval();
+    reset_stave();
+    stave_num = 0;
+}
+
+function reset_stave() {
+    let stave = document.getElementById(`sheet${stave_num + 1}`);
+    let highlight = stave.querySelector("#highlight");
+    highlight.style.left = "100px";
+    highlight.hidden = true;
+    first_note = true;
+    col = 0;
+}
+
+function clear_interval() {
     clearInterval(interval_music);
     clearInterval(interval_highlight);
-    let highlight = document.getElementById("highlight");
-    highlight.style.left = "";
-    highlight.hidden = true;
-    col = 0;
 }
