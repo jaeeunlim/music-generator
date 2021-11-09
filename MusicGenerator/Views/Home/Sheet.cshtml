@@ -2,17 +2,17 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Music Sheet";
+    ViewData["Title"] = "Generate Music Sheet";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<p>Generate your music sheet. Click Add to add a line. ♩♩</p>
+<p>Click a position on the stave to add a quarter note. Click Add to add a stave. ♩♩♩</p>
 
 <div class="btn-group" role="group" aria-label="radio buttons">
-    <button id="play" type="button" class="btn btn-danger"><i class="fa fa-play"></i></button>
-    <button id="pause" type="button" class="btn btn-danger"><i class="fa fa-pause"></i></button>
-    <button id="stop" type="button" class="btn btn-danger"><i class="fa fa-stop"></i></button>
+    <button id="play" type="button" class="btn btn-success"><i class="fa fa-play"></i></button>
+    <button id="pause" type="button" class="btn btn-success"><i class="fa fa-pause"></i></button>
+    <button id="stop" type="button" class="btn btn-success"><i class="fa fa-stop"></i></button>
 </div>
 
 <audio id="do-low" src="@Url.Content("~/audio/do_low.m4a")"></audio>
