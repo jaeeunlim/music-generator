@@ -8,4 +8,8 @@
     <Content Remove="wwwroot\images\" />
     <Content Remove="wwwroot\audio\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessAccess\BusinessAccess.csproj" />
+  </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MusicGenerator.Models;
 
@@ -13,9 +14,12 @@ namespace MusicGenerator.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IConfiguration _configuration;
+
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -30,7 +34,8 @@ namespace MusicGenerator.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            var model = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(1, _configuration);
+            return View(model);
         }
 
         public IActionResult MusicSheet()
