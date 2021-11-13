@@ -27,9 +27,10 @@ namespace MusicGenerator.Controllers
             return View();
         }
 
-        public IActionResult Sheet()
+        public IActionResult CreateSheet()
         {
-            return View();
+            var model = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(1, _configuration);
+            return View(model);
         }
 
         public IActionResult Privacy()

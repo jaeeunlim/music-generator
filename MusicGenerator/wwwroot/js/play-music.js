@@ -1,6 +1,5 @@
 ﻿const MAX_ROWS = 13; // maximum number of rows on stave where a note can be placed
 const MAX_COLS = 12; // maximum number of columns on stave where a note can be placed
-const MIN_SHEETS = 1;
 const MUSIC_NOTE_AUDIO = [
     "la-hi", "sol-hi", "fa-hi", "mi-hi", "re-hi", "do-hi", "ti-low",
     "la-low", "sol-low", "fa-low", "mi-low", "re-low", "do-low"
@@ -10,52 +9,6 @@ var num_sheets = 1;
 var col = 0; // current column on the stave that is being played
 var stave_num = 0; // current stave being played
 var first_note = true;
-var last_note = false;
-
-// Add more music sheet when Add button is clicked.
-document.getElementById("btn-add").onclick = function () {
-    var container = document.getElementById("sheet-group");
-    var section = document.getElementById("sheet1");
-    var clone = section.cloneNode(true);
-    num_sheets++;
-    clone.id = `sheet${num_sheets}`;
-    let note_grid = clone.querySelector(".note-grid");
-    let children = note_grid.children;
-    for (var i = 0; i < children.length; i++) {
-        let note = children[i];
-        note.id = note.id.slice(0, -1) + `${num_sheets-1}`; // Increment note ids.
-        let note_children = note.children;
-        for (var j = 0; j < note_children.length; j++) {
-            note_children[j].hidden = true; // Clear all notes.
-        }
-    }
-    container.appendChild(clone);
-
-    if (num_sheets > MIN_SHEETS) {
-        document.getElementById("btn-remove").hidden = false;
-    }
-}
-
-// Delete music sheet when Remove button is clicked.
-document.getElementById("btn-remove").onclick = function () {
-    if (num_sheets > MIN_SHEETS) {
-        document.getElementById(`sheet${num_sheets}`).remove();
-        num_sheets--;
-
-        if (num_sheets == MIN_SHEETS) {
-            document.getElementById("btn-remove").hidden = true;
-        }
-    }
-}
-
-// Add a note to stave when a grid is clicked.
-function addNote(id) {
-    let grid = document.getElementById(id);
-    let children = grid.children;
-    for (var i = 0; i < children.length; i++) {
-        children[i].hidden = !children[i].hidden;
-    }
-}
 
 
 // Highlight stave when PLAY button is clicked.
