@@ -46,13 +46,10 @@ namespace DataAccess
 
             var conn = new MySqlConnection(cs);
 
-            var sql = "SELECT * FROM Stave WHERE musicId = @musicId;";
-
             conn.Open();
 
             using (var command = new MySqlCommand(sql, conn))
             {
-                command.Parameters.Add(new MySqlParameter("@musicId", musicId));
                 using (var dataReader = command.ExecuteReader())
                 {
                     dt.Load(dataReader);
