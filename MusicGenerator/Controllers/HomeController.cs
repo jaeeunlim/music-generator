@@ -36,9 +36,7 @@ namespace MusicGenerator.Controllers
 
         public IActionResult Data()
         {
-            // 1 - Canon  In D, 2 - Jingle Bell
-            int musicId = 2;
-            var model = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(musicId, _configuration);
+            var model = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(0, _configuration);
             return View(model);
         }
 
