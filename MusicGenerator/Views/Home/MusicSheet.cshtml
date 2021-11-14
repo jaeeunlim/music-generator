@@ -1,14 +1,51 @@
-﻿
+﻿@model dynamic
 @{
     ViewData["Title"] = "View Music Sheet";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<p>Stayin' Alive - OnlineDrummer.com</p>
+<div class="dropdown">
+    @using (Html.BeginForm("MusicSheet", "Home", FormMethod.Post))
+    {
+        @Html.DropDownList("musicId", new SelectList(ViewBag.Musics, "MusicId", "MusicTitle"), "-- Select Music --", new { onchange = "this.form.submit();", @class = "form-control" });
 
-<div id="sheet-group">
-    <img class="sheet" id="sheet1" src="~/images/Stayin-Alive.png" alt="Music Sheet">
+    }
 </div>
 
-<link rel="stylesheet" type="text/css" href="~/css/sheet.css" media="screen"  />
+    @*<form id="music-form" action="/Home/MusicSheet" method="post">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Music
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (Models.Music music in Model.Musics)
+                    {
+                        @Html.Hidden("musicId", music.MusicId)
+                        <a class="dropdown-item" href="javascript:{}" onclick="document.getElementById('music-form').submit();">@music.MusicTitle by @music.MusicAuthor</a>
+                    }
+                </div>
+            </div>
+        </form>*@
+
+<center><h2>Title: @Model.SelectedMusic.MusicTitle</h2></center>
+<h4 class="author">Author: @Model.SelectedMusic.MusicAuthor</h4>
+
+@{ Html.RenderPartial("~/Views/Shared/Sheet.cshtml"); }
+
+<script src="~/js/music-sheet.js" asp-append-version="true"></script>
+<script src="~/js/play-music.js" asp-append-version="true"></script>
+<script type="text/javascript">
+display_music(@Html.Raw(Json.Serialize(Model.Staves)));
+
+function addNote(id) {
+    // do nothing to prevent user from modifying stave
+}
+</script>
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/css/sheet.css")" media="screen" asp-append-version="true" />
+<style>
+    button.note:hover {
+        background-color: white;
+        cursor: default;
+    }
+</style>

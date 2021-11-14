@@ -1,4 +1,34 @@
-﻿.sheet {
+﻿p {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+h2 {
+    margin-top: 50px;
+}
+
+h4.author {
+    width: 100%;
+    text-align: right;
+}
+
+.form-control {
+    float: left;
+}
+
+.btn-submit {
+    float: right;
+}
+
+.dropdown {
+    position: absolute;
+    top: 50px;
+    right: 15%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.sheet {
     width: 1000px;
     position: absolute;
 }

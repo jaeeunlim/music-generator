@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>Privacy</title>
+    <title>Data</title>
 </head>
 <body>
     <h4>Stave</h4>
@@ -14,7 +14,10 @@
             <th>Stave Id</th>
             <th>Music Id</th>
             <th>Note Id</th>
+            <th>Music Title</th>
+            <th>Music Author</th>
             <th>Stave Index</th>
+            <th>Note Row</th>
         </tr>
         @foreach (Models.Stave st in Model)
         {
@@ -22,7 +25,10 @@
                 <td>@st.StaveId</td>
                 <td>@st.MusicId</td>
                 <td>@st.NoteId</td>
+                <td>@st.Music.MusicTitle</td>
+                <td>@st.Music.MusicAuthor</td>
                 <td>@st.StaveIndex</td>
+                <td>@st.Note.NoteRow</td>
             </tr>
         }
     </table>

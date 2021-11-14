@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Models;
 using MusicGenerator.Models;
 
 namespace MusicGenerator.Controllers
@@ -27,12 +29,12 @@ namespace MusicGenerator.Controllers
             return View();
         }
 
-        public IActionResult Sheet()
+        public IActionResult CreateSheet()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Data()
         {
             // 1 - Canon  In D, 2 - Jingle Bell
             int musicId = 2;
@@ -40,9 +42,28 @@ namespace MusicGenerator.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public IActionResult MusicSheet()
         {
-            return View();
+            dynamic model = new ExpandoObject();
+            List<Music> musicList = BusinessAccess.BusinessMusicGenerator.GetAllMusic(_configuration); 
+            model.Musics = musicList;
+            model.Staves = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(1, _configuration);
+            model.SelectedMusic = BusinessAccess.BusinessMusicGenerator.GetMusic(1, _configuration);
+            ViewBag.Musics = musicList;
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult MusicSheet(int musicId)
+        {
+            dynamic model = new ExpandoObject();
+            List<Music> musicList = BusinessAccess.BusinessMusicGenerator.GetAllMusic(_configuration);
+            model.Musics = musicList;
+            model.Staves = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(musicId, _configuration);
+            model.SelectedMusic = BusinessAccess.BusinessMusicGenerator.GetMusic(musicId, _configuration);
+            ViewBag.Musics = musicList;
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
