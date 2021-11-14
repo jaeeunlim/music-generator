@@ -34,7 +34,9 @@ namespace MusicGenerator.Controllers
 
         public IActionResult Privacy()
         {
-            var model = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(1, _configuration);
+            // 1 - Canon  In D, 2 - Jingle Bell
+            int musicId = 2;
+            var model = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(musicId, _configuration);
             return View(model);
         }
 
