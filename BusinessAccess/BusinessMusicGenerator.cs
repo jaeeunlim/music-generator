@@ -27,12 +27,6 @@ namespace BusinessAccess
                     MusicId = Convert.ToInt32(model["MusicId"]),
                     NoteId = Convert.ToInt32(model["NoteId"]),
                     StaveIndex = Convert.ToInt32(model["StaveIndex"]),
-                    Music = new Music
-                    {
-                        MusicId = Convert.ToInt32(model["MusicId"]),
-                        MusicAuthor = Convert.ToString(model["MusicAuthor"]),
-                        MusicTitle = Convert.ToString(model["MusicTitle"])
-                    },
                     Note = new Note
                     {
                         NoteId = Convert.ToInt32(model["NoteId"]),

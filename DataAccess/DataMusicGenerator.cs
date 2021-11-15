@@ -10,16 +10,14 @@ namespace DataAccess
         public static DataSet GetStavesByMusicId(int musicId, IConfiguration config)
         {
             var sql = $@"SELECT * FROM Stave s
-                    JOIN Music m ON m.MusicId=s.MusicId
                     JOIN Note n ON n.NoteId=s.NoteId
                     WHERE s.MusicId={musicId}
                     ORDER BY s.StaveIndex ASC";
 
-            // If musicId is 0, get all staves irrespective of musicId as 0 is invalid
-            if (musicId == 0)
+            // If musicId is -1, get all staves irrespective of musicId as -1 is invalid
+            if (musicId == -1)
             {
                 sql = $@"SELECT * FROM Stave s
-                    JOIN Music m ON m.MusicId=s.MusicId
                     JOIN Note n ON n.NoteId=s.NoteId";
             }
 
@@ -56,6 +54,7 @@ namespace DataAccess
                     ds.Tables.Add(dt);
                 }
             }
+            conn.Close();
             return ds;
         }
 

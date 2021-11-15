@@ -13,21 +13,6 @@
     }
 </div>
 
-    @*<form id="music-form" action="/Home/MusicSheet" method="post">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Select Music
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    @foreach (Models.Music music in Model.Musics)
-                    {
-                        @Html.Hidden("musicId", music.MusicId)
-                        <a class="dropdown-item" href="javascript:{}" onclick="document.getElementById('music-form').submit();">@music.MusicTitle by @music.MusicAuthor</a>
-                    }
-                </div>
-            </div>
-        </form>*@
-
 <center><h2>Title: @Model.SelectedMusic.MusicTitle</h2></center>
 <h4 class="author">Author: @Model.SelectedMusic.MusicAuthor</h4>
 

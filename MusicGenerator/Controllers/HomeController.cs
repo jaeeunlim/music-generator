@@ -36,7 +36,9 @@ namespace MusicGenerator.Controllers
 
         public IActionResult Data()
         {
-            var model = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(0, _configuration);
+            dynamic model = new ExpandoObject();
+            model.Musics = BusinessAccess.BusinessMusicGenerator.GetAllMusic(_configuration);
+            model.Staves = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(-1, _configuration);
             return View(model);
         }
 
@@ -46,8 +48,8 @@ namespace MusicGenerator.Controllers
             dynamic model = new ExpandoObject();
             List<Music> musicList = BusinessAccess.BusinessMusicGenerator.GetAllMusic(_configuration); 
             model.Musics = musicList;
-            model.Staves = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(1, _configuration);
-            model.SelectedMusic = BusinessAccess.BusinessMusicGenerator.GetMusic(1, _configuration);
+            model.Staves = BusinessAccess.BusinessMusicGenerator.GetStavesByMusicId(0, _configuration);
+            model.SelectedMusic = BusinessAccess.BusinessMusicGenerator.GetMusic(0, _configuration);
             ViewBag.Musics = musicList;
             return View(model);
         }

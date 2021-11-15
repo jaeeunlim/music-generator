@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Models.Stave>
-
+﻿@model dynamic
 <!DOCTYPE html>
 
 <html>
@@ -7,6 +6,25 @@
     <title>Data</title>
 </head>
 <body>
+    <h4>Music</h4>
+    <hr />
+    <table style="width:100%">
+        <tr>
+            <th>Music Id</th>
+            <th>Music Title</th>
+            <th>Music Author</th>
+        </tr>
+        @foreach (Models.Music music in Model.Musics)
+        {
+            <tr>
+                <td>@music.MusicId</td>
+                <td>@music.MusicTitle</td>
+                <td>@music.MusicAuthor</td>
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
     <h4>Stave</h4>
     <hr />
     <table style="width:100%">
@@ -14,19 +32,15 @@
             <th>Stave Id</th>
             <th>Music Id</th>
             <th>Note Id</th>
-            <th>Music Title</th>
-            <th>Music Author</th>
             <th>Stave Index</th>
             <th>Note Row</th>
         </tr>
-        @foreach (Models.Stave st in Model)
+        @foreach (Models.Stave st in Model.Staves)
         {
             <tr>
                 <td>@st.StaveId</td>
                 <td>@st.MusicId</td>
                 <td>@st.NoteId</td>
-                <td>@st.Music.MusicTitle</td>
-                <td>@st.Music.MusicAuthor</td>
                 <td>@st.StaveIndex</td>
                 <td>@st.Note.NoteRow</td>
             </tr>
