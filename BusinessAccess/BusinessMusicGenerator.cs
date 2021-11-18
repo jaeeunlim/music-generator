@@ -17,7 +17,11 @@ namespace BusinessAccess
 
             // 2nd Assignment
 
-            ds = DataMusicGenerator.GetStavesByMusicId(musicId, config);
+            //ds = DataMusicGenerator.GetStavesByMusicId(musicId, config);
+
+            //3rd Assignment
+            var testService = new WCFMusicGenerator.MusicGeneratorService();
+            ds = testService.GetStavesByMusicId(musicId, config);
 
             if (ds.Tables.Count > 0)
             {
@@ -45,8 +49,10 @@ namespace BusinessAccess
 
             // 2nd Assignment
 
-            ds = DataMusicGenerator.GetAllMusic(config);
-
+            //ds = DataMusicGenerator.GetAllMusic(config);
+            //3rd Assignment
+            var testService = new WCFMusicGenerator.MusicGeneratorService();
+            ds = testService.GetAllMusic(config);
             if (ds.Tables.Count > 0)
             {
                 musicList = ds.Tables[0].AsEnumerable().Select(model => new Music
@@ -66,7 +72,11 @@ namespace BusinessAccess
 
             // 2nd Assignment
 
-            ds = DataMusicGenerator.GetMusic(musicId, config);
+            //ds = DataMusicGenerator.GetMusic(musicId, config);
+            //3rd Assignment
+            var testService = new WCFMusicGenerator.MusicGeneratorService();
+            ds = testService.GetMusic(musicId, config);
+
 
             if (ds.Tables.Count > 0)
             {

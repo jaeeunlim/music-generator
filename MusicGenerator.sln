@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicGenerator", "MusicGene
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{5C77BB1A-A33B-4CC6-9334-FEF275BDEFF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{763AE2D5-CC4C-435A-94C4-3A5B58A8CBA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{763AE2D5-CC4C-435A-94C4-3A5B58A8CBA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessAccess", "BusinessAccess\BusinessAccess.csproj", "{70660392-611D-4154-80F1-706591883FA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessAccess", "BusinessAccess\BusinessAccess.csproj", "{70660392-611D-4154-80F1-706591883FA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessNETFramework", "DataAccessNETFramework\DataAccessNETFramework.csproj", "{3334A343-91FB-47AF-B5B1-C6F2A8D040F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFMusicGenerator", "WCFMusicGenerator\WCFMusicGenerator.csproj", "{4F01A9D3-8F6D-4D02-BDE6-06BBB6153CEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{70660392-611D-4154-80F1-706591883FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70660392-611D-4154-80F1-706591883FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70660392-611D-4154-80F1-706591883FA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3334A343-91FB-47AF-B5B1-C6F2A8D040F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3334A343-91FB-47AF-B5B1-C6F2A8D040F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3334A343-91FB-47AF-B5B1-C6F2A8D040F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3334A343-91FB-47AF-B5B1-C6F2A8D040F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F01A9D3-8F6D-4D02-BDE6-06BBB6153CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F01A9D3-8F6D-4D02-BDE6-06BBB6153CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F01A9D3-8F6D-4D02-BDE6-06BBB6153CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F01A9D3-8F6D-4D02-BDE6-06BBB6153CEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

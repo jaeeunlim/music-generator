@@ -1,12 +1,16 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataAccess
+namespace DataAccessNETFramework
 {
-    public class DataMusicGenerator
+    public class DataNETMusicGenerator
     {
-
         public static DataSet GetStavesByMusicId(int musicId, IConfiguration config)
         {
             var sql = $@"SELECT * FROM Stave s
@@ -32,7 +36,7 @@ namespace DataAccess
 
         public static DataSet GetMusic(int musicId, IConfiguration config)
         {
-            var sql = (musicId == 0)? $"SELECT * FROM Music; ": $"SELECT * FROM Music WHERE MusicId={musicId} ;";
+            var sql = (musicId == 0) ? $"SELECT * FROM Music; " : $"SELECT * FROM Music WHERE MusicId={musicId} ;";
             return GetDataBySqlQuery(config, sql);
         }
 
